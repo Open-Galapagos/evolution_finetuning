@@ -136,6 +136,8 @@ a:hover { text-decoration: underline; }
   font-size: 17px; line-height: 2.0; color: var(--ink);
 }
 .authors .author { white-space: nowrap; font-weight: 550; }
+.authors a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--orange-tint); transition: color .15s, border-color .15s; }
+.authors a:hover { color: var(--orange); border-bottom-color: var(--orange); text-decoration: none; }
 .authors .author sup { color: var(--orange); font-weight: 700; font-size: .72em; }
 .authors .sep { color: var(--muted); padding: 0 2px; }
 .affils { color: var(--charcoal-2); font-size: 14.5px; max-width: 760px; margin: 4px auto 0; }
