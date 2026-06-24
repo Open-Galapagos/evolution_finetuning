@@ -304,6 +304,33 @@ section { padding: 76px 0; }
 .rc h4 { font-family: var(--display); margin: 12px 0 7px; font-size: 16px; font-weight: 600; color: var(--ink); letter-spacing: -.01em; }
 .rc p { margin: 0; font-size: 13.5px; color: var(--ink-2); line-height: 1.55; }
 
+/* ---------- result subsection header ---------- */
+.subhead { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; margin: 50px 0 18px; padding-top: 18px; border-top: 1px solid var(--line); }
+.subhead .tag { font-family: var(--mono); font-size: 11.5px; color: var(--accent); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; }
+.subhead h3 { font-family: var(--display); font-size: 21px; font-weight: 600; color: var(--ink); margin: 0; letter-spacing: -.015em; }
+.subhead .note { font-size: 13.5px; color: var(--muted); margin-left: auto; }
+
+/* ---------- data tables ---------- */
+.tbl-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--r); background: var(--bg); box-shadow: var(--sh-1); -webkit-overflow-scrolling: touch; }
+table.data { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+table.data th, table.data td { padding: 8px 12px; text-align: right; white-space: nowrap; border-bottom: 1px solid var(--line); }
+table.data thead th { font-family: var(--mono); font-weight: 500; font-size: 11px; color: var(--ink-2); background: var(--surface); border-bottom: 1.5px solid var(--line-2); }
+table.data thead tr.grouprow th { text-align: center; color: var(--muted); text-transform: uppercase; letter-spacing: .07em; font-size: 10.5px; border-bottom: 1px solid var(--line); background: var(--bg); font-weight: 600; }
+table.data tbody td { font-family: var(--mono); color: var(--ink); }
+table.data th:first-child, table.data td:first-child { text-align: left; font-family: var(--body); font-weight: 500; color: var(--ink); }
+table.data tbody tr:last-child td { border-bottom: 0; }
+table.data td.best { color: var(--accent-deep); font-weight: 700; }
+tr.row-section td { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); background: var(--surface); text-align: center; padding: 6px; }
+tr.row-finch td { background: var(--accent-tint); }
+tr.row-finch td:first-child { color: var(--accent-deep); font-weight: 600; }
+tr.row-delta td { background: var(--surface-2); font-size: 11.5px; font-weight: 600; }
+tr.row-delta td:first-child { color: var(--ink-2); font-style: italic; font-weight: 500; }
+tr.row-sub td:first-child { color: var(--ink-2); font-weight: 500; }
+.pos { color: #1B8A5A; }
+.neg { color: #C24A24; }
+.tbl-note { font-size: 13px; color: var(--ink-2); margin: 12px 0 0; line-height: 1.55; }
+.tbl-note b { color: var(--ink); font-weight: 600; }
+
 /* ---------- bibtex ---------- */
 .bibtex-wrap { position: relative; }
 .bibtex {

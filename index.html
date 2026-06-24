@@ -268,29 +268,138 @@
       </div>
     </div>
 
-    <div class="fig-stack">
-      <figure class="figure reveal">
-        <div class="frame"><img src="static/images/figures/scale_up_plot.png" alt="Scaling with number of training tasks" /></div>
-        <figcaption><b>Scaling with task count.</b> As the Finch Collection grows 15 &rarr; 355 training tasks, held-out performance rises monotonically on AC2, CP, and PRISM &mdash; the gains are not task-specific.</figcaption>
-      </figure>
-      <figure class="figure compact reveal">
-        <div class="frame"><img src="static/images/figures/algotune_result.png" alt="AlgoTune speedup results" /></div>
-        <figcaption><b>AlgoTune speedups.</b> On algorithmic-heuristics tasks, Finch delivers larger speedups than its Qwen3.5-9B base &mdash; EFT helps on optimization-intensive, code-efficiency problems.</figcaption>
-      </figure>
+    <!-- 1) MAIN RESULTS TABLE — test-time search held-out -->
+    <div class="subhead">
+      <span class="tag">Held-out &middot; OpenEvolve</span>
+      <h3>Main results: test-time search</h3>
+      <span class="note">Finch vs. same-size base &middot; 11 held-out metrics</span>
     </div>
+    <div class="tbl-wrap reveal">
+      <table class="data">
+        <thead>
+          <tr class="grouprow">
+            <th></th>
+            <th colspan="5">Mathematical Discovery</th>
+            <th colspan="2">Algorithm Eng.</th>
+            <th colspan="4">System Performance</th>
+            <th></th>
+          </tr>
+          <tr>
+            <th>Model</th>
+            <th>Erd&#337;s&darr;</th><th>AC1&darr;</th><th>AC2&uarr;</th><th>CP(26)&uarr;</th><th>Hadamard&uarr;</th>
+            <th>ahc039&uarr;</th><th>ahc058&uarr;</th>
+            <th>EPLB&uarr;</th><th>PRISM&uarr;</th><th>LLM-SQL&uarr;</th><th>Transaction&uarr;</th>
+            <th>Avg.&Delta;&uarr;</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="row-sub"><td>Best Human</td><td>0.380927</td><td>1.5097</td><td>0.9015</td><td>2.634000</td><td>0.935673</td><td>566,997</td><td>847,674,723</td><td>0.1265</td><td>21.89</td><td>0.6920</td><td>2724.80</td><td>&mdash;</td></tr>
+          <tr class="row-sub"><td>Initial Program</td><td>0.495056</td><td>1.5186</td><td>0.8558</td><td>0.959764</td><td>0.143275</td><td>534,850</td><td>0</td><td>0.1265</td><td>21.89</td><td>0.6856</td><td>2824.86</td><td>&mdash;</td></tr>
+          <tr class="row-section"><td colspan="13">OpenEvolve + Proprietary Models</td></tr>
+          <tr class="row-sub"><td>Claude-Opus-4.6</td><td>0.381880</td><td>&mdash;</td><td>&mdash;</td><td>2.629300</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>0.1270</td><td>26.26</td><td>0.7160</td><td>3774.00</td><td>&mdash;</td></tr>
+          <tr class="row-sub"><td>Gemini-3-Pro</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>2.541400</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>0.1272</td><td>26.24</td><td>0.7258</td><td>4273.50</td><td>&mdash;</td></tr>
+          <tr class="row-sub"><td>GPT-5</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>2.541400</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>0.1272</td><td>26.23</td><td>0.7155</td><td>4237.30</td><td>&mdash;</td></tr>
+          <tr class="row-section"><td colspan="13">OpenEvolve + Open-source Models</td></tr>
+          <tr><td>Qwen3.5-2B</td><td>0.381737</td><td>1.5186</td><td>0.8646</td><td>1.253056</td><td>0.478009</td><td>546,078</td><td>0</td><td>0.1265</td><td>21.89</td><td>0.6856</td><td>2832.86</td><td>&mdash;</td></tr>
+          <tr class="row-finch"><td>Finch-2B</td><td>0.381346</td><td>1.5184</td><td>0.8920</td><td>1.535134</td><td>0.400476</td><td>545,256</td><td>329,359,253</td><td>0.1269</td><td>22.26</td><td>0.6860</td><td>2949.85</td><td>&mdash;</td></tr>
+          <tr class="row-delta"><td>&Delta;</td><td><span class="pos">+0.10%</span></td><td><span class="pos">+0.01%</span></td><td><span class="pos">+3.17%</span></td><td><span class="pos">+22.51%</span></td><td><span class="neg">-16.22%</span></td><td><span class="neg">-0.15%</span></td><td>&mdash;</td><td><span class="pos">+0.32%</span></td><td><span class="pos">+1.69%</span></td><td><span class="pos">+0.06%</span></td><td><span class="pos">+4.13%</span></td><td class="best"><span class="pos">+1.56%</span></td></tr>
+          <tr><td>Qwen3.5-4B</td><td>0.416924</td><td>1.5186</td><td>0.8802</td><td>1.680787</td><td>0.384332</td><td>542,077</td><td>0</td><td>0.1266</td><td>21.89</td><td>0.6856</td><td>2732.24</td><td>&mdash;</td></tr>
+          <tr class="row-finch"><td>Finch-4B</td><td>0.386460</td><td>1.5173</td><td>0.8933</td><td>1.806808</td><td>0.146199</td><td>551,844</td><td>331,466,883</td><td>0.1267</td><td>22.87</td><td>0.6857</td><td>4761.90</td><td>&mdash;</td></tr>
+          <tr class="row-delta"><td>&Delta;</td><td><span class="pos">+7.31%</span></td><td><span class="pos">+0.09%</span></td><td><span class="pos">+1.49%</span></td><td><span class="pos">+7.50%</span></td><td><span class="neg">-61.96%</span></td><td><span class="pos">+1.80%</span></td><td>&mdash;</td><td><span class="pos">+0.08%</span></td><td><span class="pos">+4.48%</span></td><td><span class="pos">+0.01%</span></td><td><span class="pos">+74.30%</span></td><td class="best"><span class="pos">+3.40%</span></td></tr>
+          <tr><td>Qwen3-8B</td><td>0.403585</td><td>1.5177</td><td>0.8980</td><td>1.797576</td><td>0.452330</td><td>557,081</td><td>0</td><td>0.1269</td><td>23.81</td><td>0.6858</td><td>3174.60</td><td>&mdash;</td></tr>
+          <tr class="row-finch"><td>Finch-8B</td><td>0.381236</td><td>1.5154</td><td>0.9001</td><td>1.822617</td><td>0.501743</td><td>557,168</td><td>135,184,684</td><td>0.1270</td><td>24.70</td><td>0.7341</td><td>3257.33</td><td>&mdash;</td></tr>
+          <tr class="row-delta"><td>&Delta;</td><td><span class="pos">+5.54%</span></td><td><span class="pos">+0.15%</span></td><td><span class="pos">+0.23%</span></td><td><span class="pos">+1.39%</span></td><td><span class="pos">+10.92%</span></td><td><span class="pos">+0.02%</span></td><td>&mdash;</td><td><span class="pos">+0.08%</span></td><td><span class="pos">+3.74%</span></td><td><span class="pos">+7.04%</span></td><td><span class="pos">+2.61%</span></td><td class="best"><span class="pos">+3.17%</span></td></tr>
+          <tr><td>Qwen3.5-9B</td><td>0.385512</td><td>1.5186</td><td>0.8801</td><td>1.172702</td><td>0.397184</td><td>553,582</td><td>134,486,700</td><td>0.1269</td><td>22.36</td><td>0.6858</td><td>3584.23</td><td>&mdash;</td></tr>
+          <tr class="row-finch"><td>Finch-9B</td><td>0.381100</td><td>1.5141</td><td>0.9122</td><td>1.936000</td><td>0.480585</td><td>553,759</td><td>525,286,896</td><td>0.1265</td><td>23.93</td><td>0.7024</td><td>3636.36</td><td>&mdash;</td></tr>
+          <tr class="row-delta"><td>&Delta;</td><td><span class="pos">+1.14%</span></td><td><span class="pos">+0.30%</span></td><td><span class="pos">+3.65%</span></td><td><span class="pos">+65.09%</span></td><td><span class="pos">+21.00%</span></td><td><span class="pos">+0.03%</span></td><td><span class="pos">+290.59%</span></td><td><span class="neg">-0.32%</span></td><td><span class="pos">+7.02%</span></td><td><span class="pos">+2.42%</span></td><td><span class="pos">+1.45%</span></td><td class="best"><span class="pos">+10.24%</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="tbl-note">&Delta; is the relative improvement of Finch over its <b>same-size base</b>, sign-adjusted so positive always means better. <b>Avg.&nbsp;&Delta;</b> averages the available metrics (ahc058 excluded &mdash; its near-zero base inflates the ratio). Finch lifts the average at every scale, up to <b>+10.24%</b> at 9B, and matches strong proprietary operators (Claude-Opus-4.6, Gemini-3-Pro, GPT-5) on several metrics with a far smaller open backbone.</p>
 
-    <div class="cards reveal" style="margin-top:30px;">
-      <div class="card">
-        <div class="icon">&#9878;</div>
-        <h3>Good-vs-bad discrimination (KTO)</h3>
-        <p>Training Finch on improved <em>and</em> regressed trajectories with preference learning further internalizes discovery: Finch-8B + KTO surpasses the best human score on both the AC1 and AC2 tasks.</p>
-      </div>
-      <div class="card">
-        <div class="icon">&#128293;</div>
-        <h3>Mid-training for test-time RL</h3>
-        <p>With test-time RL (nanodiscover), Finch reaches <b>state-of-the-art on two circle-packing tasks</b> and improves the Erd&#337;s result by <b>+3.2%</b> &mdash; EFT strengthens what RL can reach.</p>
-      </div>
+    <!-- 2) NP-HARD COMPETITIVE PROGRAMMING -->
+    <div class="subhead">
+      <span class="tag">FrontierCS</span>
+      <h3>NP-hard competitive programming</h3>
+      <span class="note">6 UC&nbsp;Berkeley contest problems</span>
     </div>
+    <div class="tbl-wrap reveal">
+      <table class="data">
+        <thead>
+          <tr>
+            <th>Model</th><th>P263&uarr;</th><th>P301&uarr;</th><th>P302&uarr;</th><th>P303&uarr;</th><th>P304&uarr;</th><th>P305&uarr;</th><th>Avg.&uarr;</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Qwen3.5-2B</td><td>0.00</td><td>0.00</td><td>0.00</td><td>0.00</td><td>0.00</td><td>0.00</td><td>0.00</td></tr>
+          <tr class="row-finch"><td>Finch-2B</td><td>0.38</td><td>1.63</td><td>0.12</td><td>3.16</td><td>0.00</td><td>31.43</td><td class="best">6.12</td></tr>
+          <tr><td>Qwen3.5-4B</td><td>8.15</td><td>20.99</td><td>27.07</td><td>0.00</td><td>0.00</td><td>30.89</td><td>14.52</td></tr>
+          <tr class="row-finch"><td>Finch-4B</td><td>27.44</td><td>68.17</td><td>24.41</td><td>31.79</td><td>0.00</td><td>40.03</td><td class="best">31.97</td></tr>
+          <tr><td>Qwen3-8B</td><td>23.72</td><td>44.67</td><td>36.78</td><td>10.84</td><td>0.00</td><td>29.23</td><td>24.21</td></tr>
+          <tr class="row-finch"><td>Finch-8B</td><td>38.12</td><td>39.41</td><td>36.68</td><td>10.84</td><td>0.00</td><td>22.34</td><td class="best">24.56</td></tr>
+          <tr><td>Qwen3.5-9B</td><td>55.09</td><td>27.59</td><td>35.63</td><td>35.54</td><td>5.81</td><td>35.14</td><td>32.46</td></tr>
+          <tr class="row-finch"><td>Finch-9B</td><td>86.10</td><td>58.78</td><td>36.68</td><td>34.02</td><td>22.11</td><td>38.38</td><td class="best">46.01</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="tbl-note">Average score across six NP-hard FrontierCS contest problems. Finch beats its base at every size, reaching <b>46.01</b> at 9B (vs. 32.46) &mdash; and lets Finch-4B (<b>31.97</b>) outscore the 2&times;-larger Qwen3-8B base (24.21).</p>
+
+    <!-- 3) OFFLINE RL (KTO) -->
+    <div class="subhead">
+      <span class="tag">KTO</span>
+      <h3>Offline RL</h3>
+      <span class="note">preference learning on improved + regressed</span>
+    </div>
+    <div class="tbl-wrap reveal">
+      <table class="data">
+        <thead>
+          <tr><th>Model</th><th>Erd&#337;s&darr;</th><th>AC1&darr;</th><th>AC2&uarr;</th><th>CP&uarr;</th></tr>
+        </thead>
+        <tbody>
+          <tr class="row-sub"><td>Best Human</td><td class="best">0.380927</td><td>1.5097</td><td>0.9015</td><td>&mdash;</td></tr>
+          <tr><td>Qwen3.5-4B</td><td>0.416924</td><td>1.5186</td><td>0.8802</td><td>14.52</td></tr>
+          <tr class="row-finch"><td>Finch-4B</td><td>0.386460</td><td>1.5173</td><td>0.8933</td><td>31.97</td></tr>
+          <tr class="row-finch"><td>Finch-4B + KTO</td><td>0.381809</td><td>1.5151</td><td>0.9121</td><td class="best">36.30</td></tr>
+          <tr><td>Qwen3-8B</td><td>0.403585</td><td>1.5177</td><td>0.8980</td><td>24.21</td></tr>
+          <tr class="row-finch"><td>Finch-8B</td><td class="best">0.381236</td><td>1.5154</td><td>0.9001</td><td>24.56</td></tr>
+          <tr class="row-finch"><td>Finch-8B + KTO</td><td>0.381596</td><td class="best">1.5089</td><td class="best">0.9146</td><td class="best">37.30</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="tbl-note">Further training Finch on <b>improved + regressed</b> trajectories with KTO teaches it to tell good solutions from bad. Finch-8B&nbsp;+&nbsp;KTO surpasses the <b>best human</b> score on AC1 (1.5089) and AC2 (0.9146), and KTO lifts competitive-programming scores to 36&ndash;37.</p>
+
+    <!-- 4) ONLINE RL (test-time RL) -->
+    <div class="subhead">
+      <span class="tag">nanodiscover</span>
+      <h3>Online RL (test-time RL)</h3>
+      <span class="note">circle-packing + Erd&#337;s</span>
+    </div>
+    <div class="tbl-wrap reveal">
+      <table class="data">
+        <thead>
+          <tr><th>Scaffold</th><th>Model</th><th>Erd&#337;s&darr;</th><th>CP&nbsp;(n=26)&uarr;</th><th>CP&nbsp;(n=32)&uarr;</th></tr>
+        </thead>
+        <tbody>
+          <tr class="row-sub"><td>ThetaEvolve</td><td>R1-Qwen3-8B</td><td>&mdash;</td><td class="best">2.635983</td><td>&mdash;</td></tr>
+          <tr class="row-sub"><td>TTT-Discover</td><td>GPT-OSS-120B</td><td>0.380876</td><td>&mdash;</td><td>&mdash;</td></tr>
+          <tr class="row-sub"><td></td><td>Qwen3-8B</td><td class="best">0.380932</td><td class="best">2.635983</td><td>2.939572</td></tr>
+          <tr class="row-sub"><td>nanodiscover</td><td>Qwen3-8B</td><td>0.380956</td><td class="best">2.635983</td><td class="best">2.939573</td></tr>
+          <tr class="row-finch"><td></td><td>Finch-8B</td><td class="best">0.380948</td><td class="best">2.635983</td><td class="best">2.939573</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="tbl-note">As the policy inside test-time RL (nanodiscover), <b>Finch-8B matches state-of-the-art</b> on both circle-packing tasks (n=26 &amp; n=32) and edges out the Qwen3-8B base on the Erd&#337;s problem &mdash; EFT serves as mid-training that strengthens what online RL reaches.</p>
+
+    <!-- 5) SCALING EFFECT -->
+    <div class="subhead">
+      <span class="tag">Ablation</span>
+      <h3>Scaling effect</h3>
+      <span class="note">15 &rarr; 355 training tasks</span>
+    </div>
+    <figure class="figure reveal">
+      <div class="frame"><img src="static/images/figures/scale_up_plot.png" alt="Scaling with number of training tasks" /></div>
+      <figcaption><b>Positive task-scaling.</b> As the Finch Collection grows from 15 to 355 training tasks, held-out performance rises monotonically on AC2, CP, and PRISM &mdash; an average <b>+14.1%</b> improvement, evidence that EFT gains come from task diversity rather than any single task.</figcaption>
+    </figure>
   </div>
 </section>
 
