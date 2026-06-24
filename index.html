@@ -29,7 +29,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..600&family=Inter:wght@400;450;500;550;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="static/css/style.css" />
 </head>
 <body>
@@ -124,13 +124,13 @@
 </section>
 
 <!-- ===================== STAT BAND ===================== -->
-<section class="section-cream" style="padding:40px 0;">
+<section class="section-surface" style="padding:44px 0;">
   <div class="container">
-    <div class="stats">
-      <div class="stat reveal"><div class="num">156<small>K</small></div><div class="lbl">filtered evolutionary trajectories</div></div>
-      <div class="stat reveal"><div class="num">371</div><div class="lbl">optimization tasks &middot; 10 domains</div></div>
-      <div class="stat reveal"><div class="num">+10.2<small>%</small></div><div class="lbl">avg. gain over base on 22 held-out tasks</div></div>
-      <div class="stat reveal"><div class="num">2&ndash;9<small>B</small></div><div class="lbl">Finch open-source model sizes</div></div>
+    <div class="stats reveal">
+      <div class="stat"><div class="num">156<small>K</small></div><div class="lbl">filtered trajectories</div></div>
+      <div class="stat"><div class="num">371</div><div class="lbl">tasks &middot; 10 domains</div></div>
+      <div class="stat"><div class="num">+10.2<small>%</small></div><div class="lbl">avg. gain on 22 held-out</div></div>
+      <div class="stat"><div class="num">2&ndash;9<small>B</small></div><div class="lbl">Finch model sizes</div></div>
     </div>
   </div>
 </section>
@@ -148,7 +148,7 @@
 </section>
 
 <!-- ===================== WHAT IS EFT ===================== -->
-<section id="eft" class="section-alt">
+<section id="eft" class="section-surface">
   <div class="container">
     <span class="eyebrow">The idea</span>
     <h2 class="section-title">Move discovery skill out of the scaffold and into the model</h2>
@@ -214,7 +214,7 @@
       </div>
     </div>
 
-    <div class="two-col reveal" style="margin-top:34px;">
+    <div class="fig-grid reveal" style="margin-top:34px;">
       <figure class="figure">
         <div class="frame"><img src="static/images/figures/finch_collection_task_dist.png" alt="Task distribution across domains" /></div>
         <figcaption><b>371 tasks across 10 domains.</b> Bubble size shows each group&rsquo;s task count, led by competitive programming and numerical algorithm optimization.</figcaption>
@@ -244,7 +244,7 @@
 </section>
 
 <!-- ===================== RESULTS ===================== -->
-<section id="results" class="section-alt">
+<section id="results" class="section-surface">
   <div class="container">
     <span class="eyebrow">Results</span>
     <h2 class="section-title">EFT confers cross-task discovery generalization</h2>
@@ -268,14 +268,14 @@
       </div>
     </div>
 
-    <div class="two-col reveal">
-      <figure class="figure tight">
+    <div class="fig-stack">
+      <figure class="figure reveal">
+        <div class="frame"><img src="static/images/figures/scale_up_plot.png" alt="Scaling with number of training tasks" /></div>
+        <figcaption><b>Scaling with task count.</b> As the Finch Collection grows 15 &rarr; 355 training tasks, held-out performance rises monotonically on AC2, CP, and PRISM &mdash; the gains are not task-specific.</figcaption>
+      </figure>
+      <figure class="figure compact reveal">
         <div class="frame"><img src="static/images/figures/algotune_result.png" alt="AlgoTune speedup results" /></div>
         <figcaption><b>AlgoTune speedups.</b> On algorithmic-heuristics tasks, Finch delivers larger speedups than its Qwen3.5-9B base &mdash; EFT helps on optimization-intensive, code-efficiency problems.</figcaption>
-      </figure>
-      <figure class="figure tight">
-        <div class="frame"><img src="static/images/figures/scale_up_plot.png" alt="Scaling with number of training tasks" /></div>
-        <figcaption><b>Scaling with task count.</b> As the collection grows 15 &rarr; 355 tasks, held-out performance rises monotonically on AC2, CP, and PRISM &mdash; gains are not task-specific.</figcaption>
       </figure>
     </div>
 
@@ -316,7 +316,7 @@
 </section>
 
 <!-- ===================== BIBTEX ===================== -->
-<section id="bibtex" class="section-cream">
+<section id="bibtex" class="section-surface">
   <div class="container">
     <span class="eyebrow">Citation</span>
     <h2 class="section-title">BibTeX</h2>
