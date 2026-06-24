@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Evolution Fine-Tuning: Learning to Discover Across 371 Optimization Tasks</title>
+<meta name="description" content="Evolution Fine-Tuning (EFT) turns evolutionary search trajectories into supervision, teaching small open-source LLMs how to evolve solutions across 371 optimization tasks. Trained on the 156K-trajectory Finch Collection." />
+<meta name="author" content="Young-Jun Lee, Seungone Kim, Minki Kang, Alistair Cheong, Zerui Chen, Seungho Han, Taehee Jung, Dongyeop Kang" />
+
+<!-- Open Graph / social -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Evolution Fine-Tuning: Learning to Discover Across 371 Optimization Tasks" />
+<meta property="og:description" content="A mid-training 'practice phase' that teaches small open-source LLMs how to evolve solutions, internalizing discovery skill across 371 optimization tasks." />
+<meta property="og:image" content="static/images/figures/intro_teaser.png" />
+<meta name="twitter:card" content="summary_large_image" />
+
+<link rel="icon" type="image/png" href="static/images/logos/favicon.png" />
+
+<!--
+  ============================================================================
+  EDIT-ME:  resource links.  Fill these in when each artifact is public.
+  Search for  data-todo  to find every placeholder.
+    - arXiv / PDF        -> update the two .btn href values in the hero
+    - Hugging Face data  -> update the "Dataset" button href
+    - Hugging Face model -> update the "Models" button href
+  The Code button already points at github.com/Open-Galapagos/evolution_finetuning
+  ============================================================================
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..600&family=Inter:wght@400;450;500;550;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="static/css/style.css" />
+</head>
+<body>
+
+<div id="progress"></div>
+
+<!-- ===================== NAVBAR ===================== -->
+<nav class="navbar">
+  <div class="nav-inner">
+    <a class="nav-brand" href="#top">
+      <img src="static/images/logos/finch.png" alt="Finch logo" />
+      <b>Evolution&nbsp;Fine&#8209;Tuning</b>
+    </a>
+    <button class="nav-toggle" aria-label="Toggle navigation">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+    <div class="nav-links">
+      <a href="#abstract">Abstract</a>
+      <a href="#eft">EFT</a>
+      <a href="#collection">Finch Collection</a>
+      <a href="#results">Results</a>
+      <a href="#transfer">Transfer</a>
+      <a href="#bibtex">BibTeX</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ===================== HERO ===================== -->
+<header class="hero" id="top">
+  <div class="hero-inner">
+    <span class="venue-badge"><span class="dot"></span>Preprint &middot; 2026</span>
+
+    <img class="hero-mascot" src="static/images/logos/finch.png" alt="Finch mascot" />
+
+    <h1><span class="eft">Evolution Fine&#8209;Tuning</span><br />Learning to Discover Across 371 Optimization Tasks</h1>
+
+    <p class="subtitle">A mid-training &ldquo;practice phase&rdquo; that teaches small open&#8209;source LLMs <em>how to evolve solutions</em> &mdash; internalizing discovery skill instead of rebuilding it inside every search.</p>
+
+    <!-- authors -->
+    <div class="authors">
+      <span class="author">Young&#8209;Jun&nbsp;Lee<sup>1</sup></span><span class="sep">&nbsp;&middot;&nbsp;</span>
+      <span class="author">Seungone&nbsp;Kim<sup>2</sup></span><span class="sep">&nbsp;&middot;&nbsp;</span>
+      <span class="author">Minki&nbsp;Kang<sup>3</sup></span><span class="sep">&nbsp;&middot;&nbsp;</span>
+      <span class="author">Alistair&nbsp;Cheong<sup>2</sup></span><span class="sep">&nbsp;&middot;&nbsp;</span>
+      <span class="author">Zerui&nbsp;Chen<sup>4</sup></span><span class="sep">&nbsp;&middot;&nbsp;</span>
+      <span class="author">Seungho&nbsp;Han<sup>5</sup></span><span class="sep">&nbsp;&middot;&nbsp;</span>
+      <span class="author">Taehee&nbsp;Jung<sup>6</sup></span><span class="sep">&nbsp;&middot;&nbsp;</span>
+      <span class="author">Dongyeop&nbsp;Kang<sup>1</sup></span>
+    </div>
+    <div class="affils">
+      <sup>1</sup>University of Minnesota&nbsp;&nbsp; <sup>2</sup>Carnegie Mellon University&nbsp;&nbsp; <sup>3</sup>KAIST&nbsp;&nbsp; <sup>4</sup>University of Cambridge&nbsp;&nbsp; <sup>5</sup>Hanyang University&nbsp;&nbsp; <sup>6</sup>Amazon
+    </div>
+
+    <!-- resource buttons -->
+    <div class="links">
+      <a class="btn btn-accent" href="#" data-todo title="Link will be added when the preprint is posted">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+        Paper
+      </a>
+      <a class="btn btn-primary" href="https://github.com/Open-Galapagos/evolution_finetuning" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17 4.6 18 4.9 18 4.9c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg>
+        Code
+      </a>
+      <a class="btn btn-ghost" href="#" data-todo title="Link will be added when the dataset is released">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v6c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 11v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg>
+        Dataset
+      </a>
+      <a class="btn btn-ghost" href="#" data-todo title="Link will be added when checkpoints are released">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a4 4 0 0 1 4 4c1.5.5 3 1.8 3 4 0 .7-.2 1.3-.5 1.9.9.7 1.5 1.8 1.5 3.1a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4c0-1.3.6-2.4 1.5-3.1A4 4 0 0 1 5 10c0-2.2 1.5-3.5 3-4a4 4 0 0 1 4-4z"/></svg>
+        Models
+      </a>
+      <a class="btn btn-ghost" href="#bibtex">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        BibTeX
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- ===================== TEASER + TL;DR ===================== -->
+<section style="padding-top:48px;">
+  <div class="container">
+    <div class="tldr reveal">
+      <b>TL;DR&nbsp;&mdash;</b> Evolution Fine-Tuning (EFT) converts evolutionary search trajectories into supervision, giving small open-source LLMs a <b>practice phase</b> that teaches them how to evolve solutions <em>before</em> they ever see a new problem. Trained on the 156K-trajectory <b>Finch&nbsp;Collection</b>, our <b>Finch</b> models generalize discovery skill across 22 held-out tasks (+10.22% over base), compose strategies across domains, and reach state-of-the-art on circle-packing when paired with test-time RL.
+    </div>
+
+    <figure class="figure reveal" style="margin-top:28px;">
+      <div class="frame"><img src="static/images/figures/intro_teaser.png" alt="EFT teaser: mid-training and cross-discovery transfer" /></div>
+      <figcaption><b>EFT acts as mid-training.</b> Finch lifts discovery on the Erd&#337;s minimum-overlap problem under both test-time search and learning <b>(left)</b>; on NP-hard competitive programming it composes strategies across domains, while the base model repeats a single one <b>(right)</b>.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ===================== STAT BAND ===================== -->
+<section class="section-cream" style="padding:40px 0;">
+  <div class="container">
+    <div class="stats">
+      <div class="stat reveal"><div class="num">156<small>K</small></div><div class="lbl">filtered evolutionary trajectories</div></div>
+      <div class="stat reveal"><div class="num">371</div><div class="lbl">optimization tasks &middot; 10 domains</div></div>
+      <div class="stat reveal"><div class="num">+10.2<small>%</small></div><div class="lbl">avg. gain over base on 22 held-out tasks</div></div>
+      <div class="stat reveal"><div class="num">2&ndash;9<small>B</small></div><div class="lbl">Finch open-source model sizes</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ABSTRACT ===================== -->
+<section id="abstract">
+  <div class="container">
+    <span class="eyebrow">Abstract</span>
+    <h2 class="section-title">Would designing faster GPU kernels help close in on an open math conjecture?</h2>
+    <div class="abstract-box reveal">
+      <p>LLMs integrated into evolutionary search have recently produced state-of-the-art solutions on optimization tasks &mdash; open mathematical conjectures, GPU kernel design, scientific-law discovery, and combinatorial puzzles. To achieve this, prior work applies a search scaffold to <em>one</em> target task at a time, so every new problem is approached from scratch and the experience accumulated during search is discarded once the model finishes. This leaves the capability of iteratively evolving a solution &mdash; knowing which part to mutate and how, deciding when to backtrack &mdash; <em>entirely in the scaffold rather than in the model itself.</em></p>
+      <p>We introduce <b>Evolution Fine-Tuning (EFT)</b>, a mid-training paradigm that teaches LLMs to evolve solutions across tasks by converting evolutionary search trajectories into supervision. We construct the <b>Finch Collection</b>, a 156K-trajectory dataset spanning 10 domains and 371 optimization tasks, and fine-tune open-source LLMs from 2B to 9B parameters. Empirically, EFT confers cross-task generalization: across 22 held-out tasks, our models surpass their base counterparts by <b>10.22% on average</b>. Furthermore, when paired with test-time RL, our model matches state-of-the-art performance on two circle-packing tasks and outperforms its base-model counterparts on the Erd&#337;s minimum-overlap problem. EFT thus serves as a <span class="lead-q">&ldquo;practice phase&rdquo;</span> for general-purpose discovery agents that doesn&rsquo;t solve new problems from scratch.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== WHAT IS EFT ===================== -->
+<section id="eft" class="section-alt">
+  <div class="container">
+    <span class="eyebrow">The idea</span>
+    <h2 class="section-title">Move discovery skill out of the scaffold and into the model</h2>
+    <p class="section-lead">Test-time search needs an expensive proprietary mutation operator; test-time learning over-fits a single task and throws the strategy away. EFT distills the discovery <em>behavior</em> itself into a small model &mdash; which then plugs into either scaffold.</p>
+
+    <figure class="figure reveal" style="margin-bottom:30px;">
+      <div class="frame"><img src="static/images/figures/eft_concept_teaser.png" alt="Concept of Evolution Fine-Tuning" /></div>
+      <figcaption><b>The EFT idea in one picture.</b> Rather than expensive prompting (test-time search) or single-task RL (test-time learning), EFT distills discovery tasks into the model &mdash; producing <b>Finch</b>, which then works inside either scaffold with frozen weights or further adaptation.</figcaption>
+    </figure>
+
+    <div class="cards">
+      <div class="card reveal">
+        <div class="icon">&#9851;</div>
+        <h3>A mid-training &ldquo;practice phase&rdquo;</h3>
+        <p>Instead of rebuilding discovery skill from scratch inside every search run, EFT teaches the LLM how to mutate, what to keep, and when to backtrack &mdash; so it practices <em>before</em> deployment rather than solving each new problem from zero.</p>
+      </div>
+      <div class="card reveal">
+        <div class="icon">&#9858;</div>
+        <h3>Trajectories as supervision</h3>
+        <p>Optimization tasks are NP-hard and lack ground-truth optima, so (problem, answer) pairs are unavailable. EFT instead treats the <em>trajectories</em> of search runs &mdash; parent &rarr; child transitions with scores &mdash; as the training signal.</p>
+      </div>
+      <div class="card reveal">
+        <div class="icon">&#10138;</div>
+        <h3>Orthogonal to the scaffold</h3>
+        <p>An EFT model can serve as a frozen mutation operator inside test-time search, or be further adapted by test-time RL. EFT is a layer beneath both branches, not a replacement for either.</p>
+      </div>
+      <div class="card reveal">
+        <div class="icon">&#9733;</div>
+        <h3>Emergent cross-domain transfer</h3>
+        <p>Because it is trained across many domains at once, Finch composes strategies it learned elsewhere when tackling a new problem &mdash; behavior the base model never exhibits.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FINCH COLLECTION ===================== -->
+<section id="collection">
+  <div class="container">
+    <span class="eyebrow">The Finch Collection</span>
+    <h2 class="section-title">156K evolutionary trajectories, 371 tasks, 10 domains</h2>
+    <p class="section-lead">Optimization training data is hard to synthesize, so we source <b>371 seed tasks</b> from 10 existing benchmarks &mdash; each requiring nontrivial search, with a deterministic continuous-score evaluator &mdash; and harvest the search itself.</p>
+
+    <figure class="figure reveal" style="margin-bottom:30px;">
+      <div class="frame"><img src="static/images/figures/eft_method.png" alt="Finch Collection construction pipeline" /></div>
+      <figcaption><b>The construction pipeline.</b> Collect seed optimization tasks &rarr; run an evolutionary scaffold (OpenEvolve) with a strong teacher mutation operator to harvest parent-to-child trajectories &rarr; filter out broken, systematic-error, and overlong cases, yielding ~156K trajectories over 371 tasks.</figcaption>
+    </figure>
+
+    <div class="steps">
+      <div class="step reveal">
+        <div class="n">1</div>
+        <h4>Seed task collection</h4>
+        <p>371 tasks sourced from 10 benchmarks &mdash; chosen to require real search, not ground-truth matching, with deterministic scorers.</p>
+      </div>
+      <div class="step reveal">
+        <div class="n">2</div>
+        <h4>Trajectory collection</h4>
+        <p>OpenEvolve with a <b>Qwen3.5-397B-A17B</b> teacher runs each task under <code>diff-edit</code> and <code>full-rewrite</code> strategies &rarr; 172,997 raw trajectories.</p>
+      </div>
+      <div class="step reveal">
+        <div class="n">3</div>
+        <h4>Filtering &amp; labeling</h4>
+        <p>Remove systematic errors, hard-negative breakages, and overlong inputs (90.6% retained), then label each by score delta.</p>
+      </div>
+    </div>
+
+    <div class="two-col reveal" style="margin-top:34px;">
+      <figure class="figure">
+        <div class="frame"><img src="static/images/figures/finch_collection_task_dist.png" alt="Task distribution across domains" /></div>
+        <figcaption><b>371 tasks across 10 domains.</b> Bubble size shows each group&rsquo;s task count, led by competitive programming and numerical algorithm optimization.</figcaption>
+      </figure>
+      <figure class="figure">
+        <div class="frame"><img src="static/images/figures/finch_collection_improvement_dist.png" alt="Improvement distribution of trajectories" /></div>
+        <figcaption><b>Improvement breakdown.</b> 39.4% of trajectories improve the parent, 19.2% leave it unchanged, 41.3% regress &mdash; supplying both imitation and preference (good-vs-bad) signal.</figcaption>
+      </figure>
+    </div>
+
+    <!-- domain chips -->
+    <div class="chips reveal" style="margin-top:30px;">
+      <span class="chip">Competitive Programming <span class="cnt">172</span></span>
+      <span class="chip">Numerical Algorithm Opt. <span class="cnt">47</span></span>
+      <span class="chip">SR &middot; Physics Oscillation <span class="cnt">44</span></span>
+      <span class="chip">Heuristic Optimization <span class="cnt">35</span></span>
+      <span class="chip">Mathematical Discovery <span class="cnt">28</span></span>
+      <span class="chip">SR &middot; Bio Pop. Growth <span class="cnt">24</span></span>
+      <span class="chip">SR &middot; Chem Reaction <span class="cnt">12</span></span>
+      <span class="chip">GPU Kernel Optimization <span class="cnt">4</span></span>
+      <span class="chip">scRNA-seq Denoising <span class="cnt">3</span></span>
+      <span class="chip">Constructive Search <span class="cnt">2</span></span>
+    </div>
+
+    <p class="section-lead" style="margin-top:30px;">The collection is balanced across languages (<b>68.5% Python</b> / 31.5% C++) and strategies (<b>50.3% diff-edit</b> / 49.7% full-rewrite). We fine-tune the Qwen3.5 (2B/4B/9B) and Qwen3-8B bases via full SFT on improved trajectories from 355 tasks (16 held out), producing the <b>Finch</b> family.</p>
+  </div>
+</section>
+
+<!-- ===================== RESULTS ===================== -->
+<section id="results" class="section-alt">
+  <div class="container">
+    <span class="eyebrow">Results</span>
+    <h2 class="section-title">EFT confers cross-task discovery generalization</h2>
+    <p class="section-lead">Used as a mutation operator inside test-time search, Finch beats its base models across 22 held-out tasks &mdash; and lets small models rival non-EFT models twice their size.</p>
+
+    <div class="result-cards">
+      <div class="rc reveal">
+        <div class="big">+10.22%</div>
+        <h4>Average held-out gain</h4>
+        <p>Finch over same-size base models across 22 held-out tasks, with up to <b>+290%</b> on ahc058 and +74% on Transaction.</p>
+      </div>
+      <div class="rc reveal">
+        <div class="big">2&times; size</div>
+        <h4>Punching above its weight</h4>
+        <p>Finch-4B reaches <b>0.3865</b> on Erd&#337;s &mdash; comparable to Qwen3-8B&rsquo;s 0.4036 (lower is better), matching a model twice as large.</p>
+      </div>
+      <div class="rc reveal">
+        <div class="big">+14.1%</div>
+        <h4>Positive task-scaling</h4>
+        <p>Held-out performance rises steadily as the Finch Collection grows from <b>15 &rarr; 355</b> training tasks.</p>
+      </div>
+    </div>
+
+    <div class="two-col reveal">
+      <figure class="figure tight">
+        <div class="frame"><img src="static/images/figures/algotune_result.png" alt="AlgoTune speedup results" /></div>
+        <figcaption><b>AlgoTune speedups.</b> On algorithmic-heuristics tasks, Finch delivers larger speedups than its Qwen3.5-9B base &mdash; EFT helps on optimization-intensive, code-efficiency problems.</figcaption>
+      </figure>
+      <figure class="figure tight">
+        <div class="frame"><img src="static/images/figures/scale_up_plot.png" alt="Scaling with number of training tasks" /></div>
+        <figcaption><b>Scaling with task count.</b> As the collection grows 15 &rarr; 355 tasks, held-out performance rises monotonically on AC2, CP, and PRISM &mdash; gains are not task-specific.</figcaption>
+      </figure>
+    </div>
+
+    <div class="cards reveal" style="margin-top:30px;">
+      <div class="card">
+        <div class="icon">&#9878;</div>
+        <h3>Good-vs-bad discrimination (KTO)</h3>
+        <p>Training Finch on improved <em>and</em> regressed trajectories with preference learning further internalizes discovery: Finch-8B + KTO surpasses the best human score on both the AC1 and AC2 tasks.</p>
+      </div>
+      <div class="card">
+        <div class="icon">&#128293;</div>
+        <h3>Mid-training for test-time RL</h3>
+        <p>With test-time RL (nanodiscover), Finch reaches <b>state-of-the-art on two circle-packing tasks</b> and improves the Erd&#337;s result by <b>+3.2%</b> &mdash; EFT strengthens what RL can reach.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CROSS-DISCOVERY TRANSFER ===================== -->
+<section id="transfer">
+  <div class="container">
+    <span class="eyebrow">Emergent behavior</span>
+    <h2 class="section-title">Cross-discovery transfer: composing strategies across domains</h2>
+    <p class="section-lead">Finch doesn&rsquo;t just memorize in-domain tricks. To crack an NP-hard competitive-programming problem, it imports strategies it learned elsewhere &mdash; behavior the base model never shows.</p>
+
+    <div class="cards reveal" style="margin-bottom:30px;">
+      <div class="card"><h3>Numerical optimization</h3><p>Levenberg&ndash;Marquardt multi-start polish.</p></div>
+      <div class="card"><h3>Recommender systems</h3><p>Log-domain Alternating Least Squares, degree-weighted updates.</p></div>
+      <div class="card"><h3>Robust statistics / CV</h3><p>M-estimator + RANSAC drop-resistant fitting.</p></div>
+      <div class="card"><h3>Combinatorial optimization</h3><p>Knapsack-style outlier rejection budget.</p></div>
+    </div>
+
+    <figure class="figure reveal">
+      <div class="frame"><img src="static/images/figures/case_study.png" alt="Case study: cross-domain leaps in code evolution" /></div>
+      <figcaption><b>Case study.</b> Finch makes cross-domain leaps &mdash; porting a SciPy implementation to JAX/XLA, dropping a redundant zero-copy boundary &mdash; stacking 65.9&times;, 31.6&times;, 16.2&times; and 10.1&times; speedups along the evolution.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ===================== BIBTEX ===================== -->
+<section id="bibtex" class="section-cream">
+  <div class="container">
+    <span class="eyebrow">Citation</span>
+    <h2 class="section-title">BibTeX</h2>
+    <p class="section-lead">If you find Evolution Fine-Tuning or the Finch Collection useful, please cite our work. <span style="color:var(--muted)">(arXiv id is added once the preprint is posted.)</span></p>
+    <div class="bibtex-wrap reveal">
+      <button class="copy-btn" data-copy="#bib"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span class="label">Copy</span></button>
+<pre class="bibtex" id="bib">@misc{lee2026evolution,
+  title        = {Evolution Fine-Tuning: Learning to Discover Across 371 Optimization Tasks},
+  author       = {Lee, Young-Jun and Kim, Seungone and Kang, Minki and Cheong, Alistair
+                  and Chen, Zerui and Han, Seungho and Jung, Taehee and Kang, Dongyeop},
+  year         = {2026},
+  eprint       = {ARXIV_ID_PLACEHOLDER},
+  archivePrefix = {arXiv},
+  primaryClass = {cs.LG},
+  url          = {https://arxiv.org/abs/ARXIV_ID_PLACEHOLDER}
+}</pre>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <div class="container">
+    <div class="foot-links">
+      <a href="https://github.com/Open-Galapagos/evolution_finetuning" target="_blank" rel="noopener">Code</a>
+      <a href="#abstract">Abstract</a>
+      <a href="#collection">Finch Collection</a>
+      <a href="#bibtex">Cite</a>
+    </div>
+    <p class="ack">Acknowledgement &mdash; This research was supported by the &ldquo;Advanced GPU Utilization Support Program&rdquo; funded by the Government of the Republic of Korea (Ministry of Science and ICT). We thank the SkyDiscover and OpenEvolve teams for valuable feedback on the dataset construction and frameworks.</p>
+    <p class="meta">&copy; 2026 The Evolution Fine-Tuning authors. Maintained by <a href="https://github.com/Open-Galapagos" target="_blank" rel="noopener">Open&#8209;Galapagos</a>. Built as a static GitHub Pages site.</p>
+  </div>
+</footer>
+
+<!-- lightbox -->
+<div class="lb" id="lightbox"><img src="" alt="" /></div>
+
+<script src="static/js/main.js"></script>
+</body>
+</html>
