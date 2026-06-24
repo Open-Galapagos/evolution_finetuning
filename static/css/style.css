@@ -124,15 +124,6 @@ a:hover { text-decoration: underline; }
 }
 .hero-inner { position: relative; max-width: none; margin: 0 auto; padding: 56px clamp(28px, 4vw, 60px) 56px; text-align: center; }
 
-.venue-badge {
-  display: inline-flex; align-items: center; gap: 9px;
-  background: var(--bg); border: 1px solid var(--line-2);
-  color: var(--ink-2); font-family: var(--mono); font-size: 11.5px; font-weight: 500;
-  padding: 6px 13px; border-radius: 999px; letter-spacing: .06em; text-transform: uppercase;
-  box-shadow: var(--sh-1);
-}
-.venue-badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
-
 
 .hero h1 {
   font-family: var(--display); font-weight: 600;
@@ -173,6 +164,8 @@ a:hover { text-decoration: underline; }
 .btn-accent:hover { background: var(--accent-deep); box-shadow: 0 6px 18px rgba(224,80,31,.28); }
 .btn-ghost { background: var(--bg); color: var(--ink); border-color: var(--line-2); box-shadow: var(--sh-1); }
 .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+.btn-hf { background: #FFD21E; color: #23221E; border-color: #EFC014; }
+.btn-hf:hover { background: #FFC400; border-color: #E6B400; color: #23221E; box-shadow: 0 6px 16px rgba(255,193,30,.32); }
 .btn[data-todo] { opacity: .92; }
 .btn[data-todo]::after {
   content: "soon"; font-family: var(--mono); font-size: 9.5px; font-weight: 500; letter-spacing: .05em;
