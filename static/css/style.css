@@ -123,7 +123,6 @@ a:hover { text-decoration: underline; }
           mask-image: radial-gradient(120% 80% at 50% 0%, #000 35%, transparent 75%);
 }
 .hero-inner { position: relative; max-width: none; margin: 0 auto; padding: 56px clamp(28px, 4vw, 60px) 56px; text-align: center; }
-.hero .subtitle { max-width: 720px; margin-left: auto; margin-right: auto; }
 
 .venue-badge {
   display: inline-flex; align-items: center; gap: 9px;
@@ -143,7 +142,7 @@ a:hover { text-decoration: underline; }
 .hero h1 .eft { color: var(--accent); }
 .hero .subtitle {
   font-size: clamp(16px, 2vw, 19px); color: var(--ink-2);
-  max-width: 660px; margin: 18px auto 0; font-weight: 400; line-height: 1.55;
+  max-width: 900px; margin: 18px auto 0; font-weight: 400; line-height: 1.55;
 }
 .hero .subtitle em { color: var(--ink); font-style: normal; font-weight: 600; }
 
