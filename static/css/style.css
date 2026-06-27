@@ -213,6 +213,10 @@ section { padding: 76px 0; }
 .center .section-lead, .center .eyebrow { margin-left: auto; margin-right: auto; }
 .center .eyebrow { justify-content: center; }
 
+/* ---------- Acknowledgement ---------- */
+.ack-text { color: var(--ink-2); font-size: 16px; max-width: 820px; margin: 0; line-height: 1.7; }
+.ack-text b { color: var(--ink); font-weight: 600; }
+
 /* ---------- TL;DR ---------- */
 .tldr {
   background: var(--bg); border: 1px solid var(--line);
@@ -371,7 +375,6 @@ footer .foot-links a {
   border: 1px solid rgba(255,255,255,.14); transition: background .15s; text-decoration: none;
 }
 footer .foot-links a:hover { background: rgba(255,255,255,.10); }
-footer .ack { font-size: 13.5px; color: #8C929B; max-width: 840px; line-height: 1.6; }
 footer .meta { font-family: var(--mono); font-size: 12px; color: #6E747D; }
 
 /* ---------- lightbox ---------- */
