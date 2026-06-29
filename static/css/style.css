@@ -215,6 +215,7 @@ section { padding: 76px 0; }
 
 /* ---------- Acknowledgement ---------- */
 .ack-text { color: var(--ink-2); font-size: 16px; max-width: 820px; margin: 0; line-height: 1.7; }
+.ack-text + .ack-text { margin-top: 14px; }
 .ack-text b { color: var(--ink); font-weight: 600; }
 
 /* ---------- TL;DR ---------- */
