@@ -18,12 +18,11 @@
 
 <!--
   ============================================================================
-  EDIT-ME:  resource links.  Fill these in when each artifact is public.
-  Search for  data-todo  to find every placeholder.
-    - arXiv / PDF        -> update the two .btn href values in the hero
-    - Hugging Face data  -> update the "Dataset" button href
-    - Hugging Face model -> update the "Models" button href
-  The Code button already points at github.com/Open-Galapagos/evolution_finetuning
+  Resource links (hero buttons):
+    - Paper   -> https://arxiv.org/abs/2606.29082
+    - Code    -> github.com/Open-Galapagos/evolution_finetuning
+    - Dataset -> Hugging Face: minnesotanlp/Finch-Collection
+    - Models  -> Hugging Face: minnesotanlp/evolution-fine-tuning collection
   ============================================================================
 -->
 
@@ -82,7 +81,7 @@
 
     <!-- resource buttons -->
     <div class="links">
-      <a class="btn btn-accent" href="#" data-todo title="Link will be added when the preprint is posted">
+      <a class="btn btn-accent" href="https://arxiv.org/abs/2606.29082" target="_blank" rel="noopener" title="Read the paper on arXiv">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
         Paper
       </a>
@@ -440,18 +439,18 @@
   <div class="container">
     <span class="eyebrow">Citation</span>
     <h2 class="section-title">BibTeX</h2>
-    <p class="section-lead">If you find Evolution Fine-Tuning or the Finch Collection useful, please cite our work. <span style="color:var(--muted)">(arXiv id is added once the preprint is posted.)</span></p>
+    <p class="section-lead">If you find Evolution Fine-Tuning or the Finch Collection useful, please cite our work.</p>
     <div class="bibtex-wrap reveal">
       <button class="copy-btn" data-copy="#bib"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span class="label">Copy</span></button>
-<pre class="bibtex" id="bib">@misc{lee2026evolution,
-  title        = {Evolution Fine-Tuning: Learning to Discover Across 371 Optimization Tasks},
-  author       = {Lee, Young-Jun and Kim, Seungone and Kang, Minki and Cheong, Alistair
-                  and Chen, Zerui and Han, Seungho and Jung, Taehee and Kang, Dongyeop},
-  year         = {2026},
-  eprint       = {ARXIV_ID_PLACEHOLDER},
+<pre class="bibtex" id="bib">@misc{lee2026evolutionfinetuninglearningdiscover,
+  title         = {Evolution Fine-Tuning: Learning to Discover Across 371 Optimization Tasks},
+  author        = {Young-Jun Lee and Seungone Kim and Minki Kang and Alistair Cheong Liang Chuen
+                   and Zerui Chen and Seungho Han and Taehee Jung and Dongyeop Kang},
+  year          = {2026},
+  eprint        = {2606.29082},
   archivePrefix = {arXiv},
-  primaryClass = {cs.LG},
-  url          = {https://arxiv.org/abs/ARXIV_ID_PLACEHOLDER}
+  primaryClass  = {cs.CL},
+  url           = {https://arxiv.org/abs/2606.29082}
 }</pre>
     </div>
   </div>

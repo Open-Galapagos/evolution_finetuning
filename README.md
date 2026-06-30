@@ -38,18 +38,17 @@ git push -u origin main
 Then on GitHub: **Settings → Pages → Build and deployment → Source: _Deploy from a branch_ → Branch: `main` / `/ (root)`**.
 The site goes live at `https://open-galapagos.github.io/evolution_finetuning/` within a minute or two.
 
-## Before going public — fill in the links
+## Resource links
 
-Open `index.html` and search for **`data-todo`** (and `ARXIV_ID_PLACEHOLDER`). Update:
+All hero buttons are wired up:
 
-| Button   | Where                          | Set to |
-|----------|--------------------------------|--------|
-| Paper    | hero `data-todo` button        | arXiv abstract URL |
-| Dataset  | hero `data-todo` button        | Hugging Face dataset URL |
-| Models   | hero `data-todo` button        | Hugging Face models/collection URL |
-| BibTeX   | `#bib` block + `<meta>` tags   | replace `ARXIV_ID_PLACEHOLDER` with the arXiv id |
-
-The **Code** button already points at `github.com/Open-Galapagos/evolution_finetuning`.
+| Button   | Links to |
+|----------|----------|
+| Paper    | https://arxiv.org/abs/2606.29082 |
+| Code     | `github.com/Open-Galapagos/evolution_finetuning` |
+| Dataset  | Hugging Face: `minnesotanlp/Finch-Collection` |
+| Models   | Hugging Face: `minnesotanlp/evolution-fine-tuning` collection |
+| BibTeX   | `#bib` block (arXiv id `2606.29082`) |
 
 ## Local preview
 
