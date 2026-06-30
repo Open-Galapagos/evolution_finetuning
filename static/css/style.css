@@ -208,7 +208,7 @@ section { padding: 76px 0; }
   font-size: clamp(25px, 3.4vw, 37px); color: var(--ink);
   margin: 0 0 14px; line-height: 1.12;
 }
-.section-lead { color: var(--ink-2); font-size: 17.5px; max-width: 720px; margin: 0 0 36px; line-height: 1.6; }
+.section-lead { color: var(--ink-2); font-size: 17.5px; max-width: 960px; margin: 0 0 36px; line-height: 1.6; }
 .center { text-align: center; }
 .center .section-lead, .center .eyebrow { margin-left: auto; margin-right: auto; }
 .center .eyebrow { justify-content: center; }
