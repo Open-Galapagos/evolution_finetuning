@@ -45,7 +45,7 @@ All hero buttons are wired up:
 | Button   | Links to |
 |----------|----------|
 | Paper    | https://arxiv.org/abs/2606.29082 |
-| Code     | `github.com/Open-Galapagos/evolution_finetuning` |
+| Code     | `github.com/Open-Galapagos/evolution-fine-tuning` |
 | Dataset  | Hugging Face: `minnesotanlp/Finch-Collection` |
 | Models   | Hugging Face: `minnesotanlp/evolution-fine-tuning` collection |
 | BibTeX   | `#bib` block (arXiv id `2606.29082`) |
